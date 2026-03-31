@@ -337,6 +337,9 @@ export default function App() {
         {/* 4. New Pricing */}
         <section className="flex flex-col gap-8">
           <FadeInView>
+            <h2 className="font-unbounded font-bold text-2xl text-white text-center">Прайс</h2>
+          </FadeInView>
+          <FadeInView>
             <PricingFlipCard />
           </FadeInView>
 
