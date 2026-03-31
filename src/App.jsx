@@ -339,10 +339,11 @@ export default function App() {
         </section>
 
         {/* 4. Pricing + Social Proof — единый финальный блок */}
-        <section className="flex flex-col gap-6 overflow-hidden -mx-4">
+        <section className="flex flex-col gap-12 overflow-hidden -mx-4">
           <FadeInView className="px-4">
             <h2 className="font-unbounded font-bold text-2xl text-white text-center">Прайс</h2>
           </FadeInView>
+
           <FadeInView className="px-4">
             <PricingFlipCard />
           </FadeInView>
@@ -350,6 +351,7 @@ export default function App() {
           <FadeInView delay={0.1} className="px-4">
             <FirstTimeBuyerAccordion />
           </FadeInView>
+
           <FadeInView className="px-4">
             <div className="grid grid-cols-3 text-center gap-4">
               <div className="flex flex-col gap-1">
@@ -373,22 +375,24 @@ export default function App() {
             </div>
           </FadeInView>
 
-          <div className="flex gap-3 w-max animate-drift-slow">
-            {[...clientRow1, ...clientRow1].map((client, i) => (
-              <ClientChip key={i} client={client} />
-            ))}
-          </div>
+          <div className="flex flex-col gap-3">
+            <div className="flex gap-3 w-max animate-drift-slow">
+              {[...clientRow1, ...clientRow1].map((client, i) => (
+                <ClientChip key={i} client={client} />
+              ))}
+            </div>
 
-          <div className="flex gap-3 w-max animate-drift-medium">
-            {[...clientRow2, ...clientRow2].map((client, i) => (
-              <ClientChip key={i} client={client} />
-            ))}
-          </div>
+            <div className="flex gap-3 w-max animate-drift-medium">
+              {[...clientRow2, ...clientRow2].map((client, i) => (
+                <ClientChip key={i} client={client} />
+              ))}
+            </div>
 
-          <div className="flex gap-3 w-max animate-drift-fast">
-            {[...clientRow3, ...clientRow3].map((client, i) => (
-              <ClientChip key={i} client={client} />
-            ))}
+            <div className="flex gap-3 w-max animate-drift-fast">
+              {[...clientRow3, ...clientRow3].map((client, i) => (
+                <ClientChip key={i} client={client} />
+              ))}
+            </div>
           </div>
         </section>
 
