@@ -1,17 +1,26 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { motion, useInView, animate } from 'framer-motion';
 
+const BASE = import.meta.env.BASE_URL;
+
 const channels = [
-  { name: "Pussy Shit", subs: "49.9K", reach: "12K", color: "#FF6B9D", emoji: "🍑", desc: "2D Булочки" },
-  { name: "Horny shit", subs: "30.3K", reach: "8K", color: "#4ADE80", emoji: "🌵", desc: "Кринж дрочка мемы" },
-  { name: "Буба Клаб", subs: "83.7K", reach: "15K", color: "#A855F7", emoji: "🍑", desc: "Мемный 18+ контент" },
-  { name: "Shitty Kitty", subs: "79.3K", reach: "14K", color: "#EF4444", emoji: "🍄", desc: "Тут нет котов" },
-  { name: "Канал 5", subs: "25K", reach: "6K", color: "#F59E0B", emoji: "⚡", desc: "Заглушка" },
-  { name: "Канал 6", subs: "18K", reach: "4K", color: "#06B6D4", emoji: "🔥", desc: "Заглушка" },
-  { name: "Канал 7", subs: "15K", reach: "3K", color: "#EC4899", emoji: "💀", desc: "Заглушка" },
-  { name: "Канал 8", subs: "12K", reach: "2.5K", color: "#8B5CF6", emoji: "👀", desc: "Заглушка" },
-  { name: "Канал 9", subs: "10K", reach: "2K", color: "#10B981", emoji: "🎯", desc: "Заглушка" },
-  { name: "Канал 10", subs: "8K", reach: "1.5K", color: "#F43F5E", emoji: "🫠", desc: "Заглушка" },
+  { name: "GIF.Chan 18+", subs: "101.9K", reach: "13.9K", color: "#FF6B9D", logo: "gifchan18.jpg", desc: "GIF контент 18+" },
+  { name: "Shitty Kitty", subs: "79.1K", reach: "12.8K", color: "#EF4444", logo: "shittykitty.jpg", emoji: "🍄", desc: "Тут нет котов" },
+  { name: "Буба Клаб", subs: "83.6K", reach: "7.7K", color: "#A855F7", logo: "bybaclub.jpg", desc: "Мемный контент" },
+  { name: "Pussy Shit", subs: "49.8K", reach: "6.3K", color: "#F43F5E", logo: "pussyshit.jpg", desc: "2D Булочки" },
+  { name: "Weeabo comics", subs: "50K", reach: "6.1K", color: "#06B6D4", logo: "weeabo.jpg", desc: "Аниме комиксы" },
+  { name: "GIF.Chan", subs: "54.1K", reach: "3.8K", color: "#F59E0B", logo: "gifchan.jpg", desc: "GIF контент" },
+  { name: "ANIVIBE", subs: "41K", reach: "3K", color: "#4ADE80", logo: "anivibe.jpg", desc: "Аниме мемы" },
+  { name: "Horny shit", subs: "30.4K", reach: "2.4K", color: "#22C55E", emoji: "🌵", desc: "Кринж и мемы" },
+  { name: "Парные авы", subs: "30.4K", reach: "1.2K", color: "#EC4899", logo: "parnyiaviy.jpg", desc: "Парные аватарки" },
+];
+
+const otherChannels = [
+  { name: "Комикс-Чан", subs: "16.2K" },
+  { name: "Пейринги", subs: "26.5K" },
+  { name: "Horny Honkai 18+", subs: "14.1K" },
+  { name: "Nu: impact", subs: "15.2K" },
+  { name: "JAGO COMICS", subs: "5.8K" },
 ];
 
 const trustedClients = ["Топор", "Пекарня Рифмы", "Панси", "Денис Борисов", "Wylsacom"];
@@ -88,7 +97,7 @@ export default function App() {
         <section className="flex flex-col items-center text-center mt-12 gap-8">
           <FadeInView>
             <h1 className="font-unbounded font-black text-[56px] leading-[1.05] tracking-tight">
-              50 000
+              60 000
               <br />
               <span className="text-white/40">глаз на</span>
               <br />
@@ -122,13 +131,13 @@ export default function App() {
               </div>
               <div className="flex flex-col items-center bg-[#080808] rounded-3xl p-5 gap-2 border border-white/[0.06]">
                 <span className="font-unbounded font-bold text-3xl text-white">
-                  <Counter from={0} to={10} />
+                  <Counter from={0} to={14} />
                 </span>
                 <span className="text-[10px] text-white/40 font-bold uppercase tracking-[0.15em]">Каналов</span>
               </div>
               <div className="flex flex-col items-center bg-[#080808] rounded-3xl p-5 gap-2 border border-white/[0.06]">
                 <span className="font-unbounded font-bold text-3xl text-white">
-                  <Counter from={0} to={50} suffix="K" />
+                  <Counter from={0} to={60} suffix="K" />
                 </span>
                 <span className="text-[10px] text-white/40 font-bold uppercase tracking-[0.15em]">Охват</span>
               </div>
@@ -144,15 +153,34 @@ export default function App() {
           
           <div className="flex overflow-x-auto snap-x snap-mandatory no-scrollbar px-4 pb-4 gap-3">
             {channels.map((ch, i) => (
-              <ChannelCard 
-                key={i} 
-                channel={ch} 
+              <ChannelCard
+                key={i}
+                channel={ch}
                 onInView={(isInView) => {
                   if (isInView) setActiveColor(ch.color);
-                }} 
+                }}
               />
             ))}
-            {/* spacer for last item padding */}
+            {/* "Другие" summary card */}
+            <div className="shrink-0 w-[280px] snap-center bg-[#080808] rounded-3xl p-6 border border-white/[0.06] flex flex-col gap-6 relative overflow-hidden">
+              <div className="flex items-center gap-4">
+                <div className="w-14 h-14 rounded-2xl flex items-center justify-center text-2xl shrink-0 bg-white/[0.05] text-white/40">
+                  +5
+                </div>
+                <div className="flex flex-col">
+                  <h3 className="font-unbounded font-bold text-lg text-white leading-tight mb-0.5">Другие</h3>
+                  <span className="text-xs font-medium text-white/40">ещё 5 каналов в сетке</span>
+                </div>
+              </div>
+              <div className="flex flex-col gap-2">
+                {otherChannels.map((ch, i) => (
+                  <div key={i} className="flex justify-between items-center py-1.5 border-b border-white/[0.04] last:border-0">
+                    <span className="text-sm text-white/60">{ch.name}</span>
+                    <span className="font-unbounded text-xs text-white/30">{ch.subs}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
             <div className="min-w-[16px] snap-center shrink-0"></div>
           </div>
         </section>
@@ -194,7 +222,7 @@ export default function App() {
                 <li className="flex items-start gap-4">
                   <span className="font-unbounded font-bold text-white/20 mt-0.5 text-sm">01</span>
                   <div className="flex flex-col gap-1 pb-5 border-b border-white/[0.04] w-full">
-                    <span className="text-white font-medium text-[15px]">10 каналов разом</span>
+                    <span className="text-white font-medium text-[15px]">14 каналов разом</span>
                     <span className="text-[13px] text-white/40 leading-snug">Без долгих переговоров и подбора сеток</span>
                   </div>
                 </li>
@@ -208,7 +236,7 @@ export default function App() {
                 <li className="flex items-start gap-4">
                   <span className="font-unbounded font-bold text-white/20 mt-0.5 text-sm">03</span>
                   <div className="flex flex-col gap-1 w-full">
-                    <span className="text-white font-medium text-[15px]">~50 000 просмотров</span>
+                    <span className="text-white font-medium text-[15px]">~60 000 просмотров</span>
                     <span className="text-[13px] text-white/40 leading-snug">Чистый гарантированный охват аудитории</span>
                   </div>
                 </li>
@@ -259,12 +287,20 @@ function ChannelCard({ channel, onInView }) {
       ></div>
       
       <div className="flex items-center gap-4 relative z-10">
-        <div 
-          className="w-14 h-14 rounded-2xl flex items-center justify-center text-2xl shrink-0"
-          style={{ backgroundColor: `${channel.color}15`, color: channel.color }}
-        >
-          {channel.emoji}
-        </div>
+        {channel.logo ? (
+          <img
+            src={`${BASE}logos/${channel.logo}`}
+            alt={channel.name}
+            className="w-14 h-14 rounded-2xl object-cover shrink-0"
+          />
+        ) : (
+          <div
+            className="w-14 h-14 rounded-2xl flex items-center justify-center text-2xl shrink-0"
+            style={{ backgroundColor: `${channel.color}15`, color: channel.color }}
+          >
+            {channel.emoji}
+          </div>
+        )}
         <div className="flex flex-col">
           <h3 className="font-unbounded font-bold text-lg text-white leading-tight mb-0.5">{channel.name}</h3>
           <span className="text-xs font-medium text-white/40">{channel.desc}</span>
