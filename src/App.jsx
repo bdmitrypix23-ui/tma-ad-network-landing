@@ -170,38 +170,61 @@ export default function App() {
           </div>
         </section>
 
-        {/* 5. Pricing */}
-        <section className="flex flex-col px-1">
+        {/* 5. Pricing: Typography / Linear Style */}
+        <section className="flex flex-col px-4">
           <FadeInView>
-            <div className="bg-[#0a0a0a] border border-white/10 rounded-[32px] p-8 flex flex-col items-center gap-6 relative overflow-hidden">
-              <div className="absolute inset-x-0 top-0 h-[120px] bg-gradient-to-b from-white/[0.04] to-transparent pointer-events-none"></div>
+            <div className="relative group rounded-[32px] p-[1px] overflow-hidden bg-white/10">
+              {/* Outer gradient border simulator */}
+              <div 
+                className="absolute inset-0 transition-opacity duration-1000 pointer-events-none"
+                style={{
+                  background: `linear-gradient(180deg, ${activeColor === 'transparent' ? 'rgba(255,255,255,0.2)' : activeColor} 0%, transparent 40%)`
+                }}
+              />
               
-              <span className="font-unbounded font-bold text-[11px] text-white/40 uppercase tracking-[0.2em] mt-2">Всё включено</span>
-              
-              <div className="flex items-end gap-1 mb-2">
-                <span className="font-unbounded font-black text-6xl text-white">$150</span>
+              <div className="relative bg-[#050505] rounded-[31px] p-8 flex flex-col gap-8 h-full">
+                
+                {/* Dynamic Inner Glow */}
+                <div 
+                  className="absolute -top-20 left-1/2 -translate-x-1/2 w-[250px] h-[150px] blur-[60px] pointer-events-none transition-colors duration-1000"
+                  style={{ backgroundColor: activeColor === 'transparent' ? 'rgba(255,255,255,0.1)' : activeColor, opacity: 0.15 }}
+                />
+
+                <div className="flex justify-between items-start relative z-10">
+                  <span className="font-unbounded font-medium text-[10px] text-white/60 uppercase tracking-[0.15em] border border-white/10 px-3 py-1.5 rounded-full bg-white/[0.02]">
+                    Пакет "всё сразу"
+                  </span>
+                </div>
+                
+                <div className="flex items-baseline gap-2 relative z-10 -mt-2">
+                  <span className="font-unbounded font-black text-[5rem] leading-none text-white tracking-tighter">$150</span>
+                  <span className="text-white/30 text-sm font-medium uppercase tracking-widest block transform -translate-y-2">/ пост</span>
+                </div>
+                
+                <ul className="flex flex-col gap-5 w-full text-white/60 relative z-10 pt-4">
+                  <li className="flex items-start gap-4">
+                    <span className="font-unbounded font-bold text-white/20 mt-0.5 text-sm">01</span>
+                    <div className="flex flex-col gap-1 pb-5 border-b border-white/5 w-full">
+                      <span className="text-white font-medium text-[15px]">10 каналов разом</span>
+                      <span className="text-[13px] text-white/40 leading-snug">Без долгих переговоров и подбора сеток</span>
+                    </div>
+                  </li>
+                  <li className="flex items-start gap-4">
+                    <span className="font-unbounded font-bold text-white/20 mt-0.5 text-sm">02</span>
+                    <div className="flex flex-col gap-1 pb-5 border-b border-white/5 w-full">
+                      <span className="text-white font-medium text-[15px]">1/24 или 2/48 формат</span>
+                      <span className="text-[13px] text-white/40 leading-snug">Максимальное время в топе без перебивки</span>
+                    </div>
+                  </li>
+                  <li className="flex items-start gap-4">
+                    <span className="font-unbounded font-bold text-white/20 mt-0.5 text-sm">03</span>
+                    <div className="flex flex-col gap-1 w-full">
+                      <span className="text-white font-medium text-[15px]">~50 000 просмотров</span>
+                      <span className="text-[13px] text-white/40 leading-snug">Чистый гарантированный охват аудитории</span>
+                    </div>
+                  </li>
+                </ul>
               </div>
-              
-              <ul className="flex flex-col gap-4 w-full text-white/70 pt-6 border-t border-white/5">
-                <li className="flex items-center gap-4">
-                  <div className="w-6 h-6 rounded-full bg-white/10 flex items-center justify-center shrink-0">
-                    <svg className="w-3.5 h-3.5 text-white/70" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="3" d="M5 13l4 4L19 7"></path></svg>
-                  </div>
-                  <span className="font-medium text-[15px]">10 каналов разом</span>
-                </li>
-                <li className="flex items-center gap-4">
-                  <div className="w-6 h-6 rounded-full bg-white/10 flex items-center justify-center shrink-0">
-                    <svg className="w-3.5 h-3.5 text-white/70" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="3" d="M5 13l4 4L19 7"></path></svg>
-                  </div>
-                  <span className="font-medium text-[15px]">1/24 или 2/48 формат</span>
-                </li>
-                <li className="flex items-center gap-4">
-                  <div className="w-6 h-6 rounded-full bg-white/10 flex items-center justify-center shrink-0">
-                    <svg className="w-3.5 h-3.5 text-white/70" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="3" d="M5 13l4 4L19 7"></path></svg>
-                  </div>
-                  <span className="font-medium text-[15px]">До 50 000 просмотров</span>
-                </li>
-              </ul>
             </div>
           </FadeInView>
         </section>
