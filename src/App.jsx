@@ -114,14 +114,14 @@ function PricingFlipCard() {
     <div className="w-full" style={{ perspective: 1200 }}>
       <motion.div
         className="relative w-full"
-        style={{ transformStyle: "preserve-3d" }}
+        style={{ transformStyle: "preserve-3d", touchAction: "pan-y" }}
         animate={{ rotateY: flipped ? 180 : 0 }}
         transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
       >
         {/* Front */}
         <div
           className="bg-[#080808] rounded-3xl p-8 flex flex-col gap-8 border border-white/[0.06] relative"
-          style={{ backfaceVisibility: "hidden" }}
+          style={{ backfaceVisibility: "hidden", pointerEvents: flipped ? "none" : "auto" }}
         >
           <div className="flex justify-between items-start">
             <span className="font-unbounded font-medium text-[10px] text-white/50 uppercase tracking-[0.2em] border border-white/[0.08] px-3 py-1.5 rounded-full bg-white/[0.02]">
@@ -189,7 +189,7 @@ function PricingFlipCard() {
         {/* Back — channels list */}
         <div
           className="bg-[#080808] rounded-3xl p-8 flex flex-col gap-6 border border-white/[0.06] absolute inset-0"
-          style={{ backfaceVisibility: "hidden", transform: "rotateY(180deg)" }}
+          style={{ backfaceVisibility: "hidden", transform: "rotateY(180deg)", pointerEvents: flipped ? "auto" : "none" }}
         >
           <span className="font-unbounded font-bold text-lg text-white">14 каналов</span>
 
