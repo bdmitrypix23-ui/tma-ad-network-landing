@@ -102,6 +102,170 @@ function ClientChip({ client }) {
   );
 }
 
+const allPackageChannels = [
+  ...channels.map(ch => ({ name: ch.name, subs: ch.subs, logo: ch.logo })),
+  ...otherChannels.map(ch => ({ name: ch.name, subs: ch.subs })),
+];
+
+function PricingFlipCard() {
+  const [flipped, setFlipped] = useState(false);
+
+  return (
+    <div className="shrink-0 w-[280px] snap-center" style={{ perspective: 1200 }}>
+      <motion.div
+        className="relative w-full"
+        style={{ transformStyle: "preserve-3d" }}
+        animate={{ rotateY: flipped ? 180 : 0 }}
+        transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+      >
+        {/* Front */}
+        <div
+          className="bg-[#080808] rounded-3xl p-8 flex flex-col gap-6 border border-white/[0.06] relative"
+          style={{ backfaceVisibility: "hidden" }}
+        >
+          <span className="font-unbounded font-medium text-[10px] text-white/50 uppercase tracking-[0.2em] border border-white/[0.08] px-3 py-1.5 rounded-full bg-white/[0.02] self-start">
+            Максимум охвата
+          </span>
+
+          <div className="flex items-baseline gap-2">
+            <span className="font-unbounded font-black text-[4rem] leading-none text-white tracking-tighter">$150</span>
+          </div>
+
+          <ul className="flex flex-col gap-4 text-white/60">
+            <li className="flex items-start gap-4">
+              <span className="font-unbounded font-bold text-white/20 mt-0.5 text-sm">01</span>
+              <div className="flex flex-col gap-1 pb-4 border-b border-white/[0.04] w-full">
+                <span className="text-white font-medium text-[15px]">~60 000 охват</span>
+                <span className="text-[13px] text-white/40 leading-snug">Гарантированные просмотры</span>
+              </div>
+            </li>
+            <li className="flex items-start gap-4">
+              <span className="font-unbounded font-bold text-white/20 mt-0.5 text-sm">02</span>
+              <div className="flex flex-col gap-1 pb-4 border-b border-white/[0.04] w-full">
+                <span className="text-white font-medium text-[15px]">1/24 формат</span>
+                <span className="text-[13px] text-white/40 leading-snug">Пост в топе сутки без перебивки</span>
+              </div>
+            </li>
+            <li className="flex items-start gap-4">
+              <span className="font-unbounded font-bold text-white/20 mt-0.5 text-sm">03</span>
+              <div className="flex flex-col gap-1 w-full">
+                <span className="text-white font-medium text-[15px]">Ответка</span>
+                <span className="text-[13px] text-white/40 leading-snug">Репост в канал рекламодателя</span>
+              </div>
+            </li>
+          </ul>
+
+          {/* Avatars row + flip trigger */}
+          <button
+            onClick={() => setFlipped(true)}
+            className="flex items-center gap-2 mt-2 group"
+          >
+            <div className="flex -space-x-2">
+              {channels.slice(0, 5).map((ch, i) => (
+                <img
+                  key={i}
+                  src={`${BASE}logos/${ch.logo}`}
+                  alt=""
+                  className="w-7 h-7 rounded-full border-2 border-[#080808] object-cover"
+                />
+              ))}
+            </div>
+            <span className="text-[13px] text-white/40 group-hover:text-white/60 transition-colors">
+              14 каналов →
+            </span>
+          </button>
+
+          <button
+            onClick={openTelegram}
+            className="w-full bg-white text-black font-unbounded font-bold text-base h-12 rounded-2xl active:scale-95 transition-transform mt-2"
+          >
+            Купить
+          </button>
+        </div>
+
+        {/* Back */}
+        <div
+          className="bg-[#080808] rounded-3xl p-6 flex flex-col gap-4 border border-white/[0.06] absolute inset-0"
+          style={{ backfaceVisibility: "hidden", transform: "rotateY(180deg)" }}
+        >
+          <div className="flex justify-between items-center">
+            <span className="font-unbounded font-bold text-base text-white">Каналы пакета</span>
+          </div>
+
+          <div className="flex-1 overflow-y-auto no-scrollbar flex flex-col gap-1.5" style={{ maxHeight: 340 }}>
+            {allPackageChannels.map((ch, i) => (
+              <div key={i} className="flex justify-between items-center py-2 border-b border-white/[0.04] last:border-0">
+                <div className="flex items-center gap-2.5">
+                  {ch.logo ? (
+                    <img src={`${BASE}logos/${ch.logo}`} alt="" className="w-6 h-6 rounded-lg object-cover" />
+                  ) : (
+                    <div className="w-6 h-6 rounded-lg bg-white/[0.05]" />
+                  )}
+                  <span className="text-sm text-white/70">{ch.name}</span>
+                </div>
+                <span className="font-unbounded text-xs text-white/30">{ch.subs}</span>
+              </div>
+            ))}
+          </div>
+
+          <button
+            onClick={() => setFlipped(false)}
+            className="w-full bg-white/[0.06] text-white/60 font-medium text-sm h-10 rounded-xl active:scale-95 transition-transform mt-auto"
+          >
+            ← Назад
+          </button>
+        </div>
+      </motion.div>
+    </div>
+  );
+}
+
+function FirstTimeBuyerAccordion() {
+  const [open, setOpen] = useState(false);
+
+  const steps = [
+    { num: "1", title: "Формат", text: "Присылаешь готовый пост или описываешь идею — мы поможем оформить. Один пост идёт сразу во все каналы." },
+    { num: "2", title: "Согласование", text: "Смотрим пост, при необходимости предлагаем правки. Обычно согласуем за пару часов." },
+    { num: "3", title: "Оплата и запуск", text: "Оплачиваешь, выбираем дату — и пост выходит во всех каналах разом." },
+  ];
+
+  return (
+    <div>
+      <button
+        onClick={() => setOpen(!open)}
+        className="w-full bg-white/[0.03] border border-white/[0.06] rounded-2xl px-5 py-4 flex justify-between items-center active:scale-[0.98] transition-transform"
+      >
+        <span className="text-[15px] text-white/60 font-medium text-left">Первый раз покупаешь рекламу?<br /><span className="text-white">3 простых шага</span></span>
+        <motion.span
+          animate={{ rotate: open ? 180 : 0 }}
+          transition={{ duration: 0.3 }}
+          className="text-white/40 text-xl"
+        >
+          ▾
+        </motion.span>
+      </button>
+      <motion.div
+        initial={false}
+        animate={{ height: open ? "auto" : 0, opacity: open ? 1 : 0 }}
+        transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
+        className="overflow-hidden"
+      >
+        <div className="flex flex-col gap-4 pt-4">
+          {steps.map((step) => (
+            <div key={step.num} className="flex items-start gap-4">
+              <span className="font-unbounded font-bold text-white/20 mt-0.5 text-sm">{step.num}</span>
+              <div className="flex flex-col gap-1">
+                <span className="text-white font-medium text-[15px]">{step.title}</span>
+                <span className="text-[13px] text-white/40 leading-snug">{step.text}</span>
+              </div>
+            </div>
+          ))}
+        </div>
+      </motion.div>
+    </div>
+  );
+}
+
 export default function App() {
   const [activeColor, setActiveColor] = useState("transparent");
 
@@ -215,7 +379,40 @@ export default function App() {
           </div>
         </section>
 
-        {/* 4. Trusted Clients */}
+        {/* 4. New Pricing Carousel */}
+        <section className="flex flex-col gap-8 -mx-4">
+          <FadeInView className="px-4">
+            <h2 className="font-unbounded font-bold text-2xl text-white text-center">Пакеты</h2>
+          </FadeInView>
+
+          <div className="flex overflow-x-auto snap-x snap-mandatory no-scrollbar px-4 gap-3 items-start">
+            {/* Left joke card */}
+            <div className="shrink-0 w-[280px] snap-center bg-[#080808] rounded-3xl p-8 border border-white/[0.06] flex flex-col gap-6 opacity-40 min-h-[420px] justify-center items-center text-center">
+              <span className="text-4xl">🐹</span>
+              <span className="font-unbounded font-bold text-lg text-white/40">Хомяк-пак</span>
+              <span className="text-sm text-white/20">Скоро. Может быть. Нет.</span>
+            </div>
+
+            {/* Main card with flip */}
+            <PricingFlipCard />
+
+            {/* Right joke card */}
+            <div className="shrink-0 w-[280px] snap-center bg-[#080808] rounded-3xl p-8 border border-white/[0.06] flex flex-col gap-6 opacity-40 min-h-[420px] justify-center items-center text-center">
+              <span className="text-4xl">🦄</span>
+              <span className="font-unbounded font-bold text-lg text-white/40">Единорог-пак</span>
+              <span className="text-sm text-white/20">Когда-нибудь потом</span>
+            </div>
+
+            <div className="min-w-[16px] shrink-0"></div>
+          </div>
+
+          {/* Accordion: first time buyer */}
+          <FadeInView className="px-4">
+            <FirstTimeBuyerAccordion />
+          </FadeInView>
+        </section>
+
+        {/* 5. Trusted Clients */}
         <section className="flex flex-col gap-4 overflow-hidden -mx-4">
           <FadeInView className="px-4">
             <h2 className="font-unbounded font-bold text-2xl text-white text-center">Нам доверяют</h2>
