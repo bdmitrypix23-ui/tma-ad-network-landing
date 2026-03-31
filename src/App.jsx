@@ -16,11 +16,11 @@ const channels = [
 ];
 
 const otherChannels = [
-  { name: "Комикс-Чан", subs: "16.2K" },
-  { name: "Пейринги", subs: "26.5K" },
-  { name: "Horny Honkai 18+", subs: "14.1K" },
-  { name: "Nu: impact", subs: "15.2K" },
-  { name: "JAGO COMICS", subs: "5.8K" },
+  { name: "Комикс-Чан", subs: "16.2K", reach: "1.1K", logo: "comicschan.jpg" },
+  { name: "Пейринги", subs: "26.5K", reach: "1.8K" },
+  { name: "Horny Honkai", subs: "14.1K", reach: "0.9K" },
+  { name: "Nu: impact", subs: "15.2K", reach: "1K" },
+  { name: "JAGO COMICS", subs: "5.8K", reach: "0.4K" },
 ];
 
 const trustedClients = [
@@ -103,8 +103,8 @@ function ClientChip({ client }) {
 }
 
 const allPackageChannels = [
-  ...channels.map(ch => ({ name: ch.name, subs: ch.subs, logo: ch.logo })),
-  ...otherChannels.map(ch => ({ name: ch.name, subs: ch.subs })),
+  ...channels.map(ch => ({ name: ch.name, subs: ch.subs, reach: ch.reach, logo: ch.logo })),
+  ...otherChannels.map(ch => ({ name: ch.name, subs: ch.subs, reach: ch.reach, logo: ch.logo })),
 ];
 
 function PricingFlipCard() {
@@ -193,20 +193,24 @@ function PricingFlipCard() {
         >
           <span className="font-unbounded font-bold text-lg text-white">14 каналов</span>
 
-          <div className="flex-1 overflow-y-auto no-scrollbar flex flex-col gap-1">
-            {allPackageChannels.map((ch, i) => (
-              <div key={i} className="flex justify-between items-center py-2.5 border-b border-white/[0.04] last:border-0">
-                <div className="flex items-center gap-3">
+          <div className="flex-1 overflow-y-auto no-scrollbar">
+            <div className="grid grid-cols-3 gap-2">
+              {allPackageChannels.map((ch, i) => (
+                <div key={i} className="bg-white/[0.03] border border-white/[0.06] rounded-xl p-2 flex flex-col items-center gap-1.5">
                   {ch.logo ? (
-                    <img src={`${BASE}logos/${ch.logo}`} alt="" className="w-7 h-7 rounded-lg object-cover" />
+                    <img src={`${BASE}logos/${ch.logo}`} alt="" className="w-full aspect-square rounded-lg object-cover" />
                   ) : (
-                    <div className="w-7 h-7 rounded-lg bg-white/[0.05]" />
+                    <div className="w-full aspect-square rounded-lg bg-white/[0.05]" />
                   )}
-                  <span className="text-[15px] text-white/70">{ch.name}</span>
+                  <span className="text-[11px] text-white/70 font-medium text-center leading-tight line-clamp-1">{ch.name}</span>
+                  <span className="text-[10px] text-white/40">
+                    <span className="font-unbounded font-bold text-white/60">{ch.reach}</span>
+                    {" · "}
+                    {ch.subs}
+                  </span>
                 </div>
-                <span className="font-unbounded text-xs text-white/30">{ch.subs}</span>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
 
           <div className="flex items-center gap-2 text-[13px] text-white/40">
