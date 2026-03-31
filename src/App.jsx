@@ -40,10 +40,10 @@ const trustedClients = [
   { name: "VPN Персик", count: 1, label: "1" },
 ];
 
-function getChipSize(count) {
-  if (count >= 20) return "text-[15px] px-5 py-2.5";
-  if (count >= 5) return "text-[13px] px-4 py-2";
-  return "text-[11px] px-3 py-1.5";
+function getChipWeight(count) {
+  if (count >= 20) return "font-semibold text-white";
+  if (count >= 5) return "font-medium text-white";
+  return "font-medium text-white/70";
 }
 
 function openTelegram() {
@@ -94,12 +94,12 @@ function Counter({ from = 0, to, suffix = "", duration = 2 }) {
 }
 
 function ClientChip({ client, index }) {
-  const size = getChipSize(client.count);
+  const weight = getChipWeight(client.count);
   return (
     <FadeInView delay={0.03 * index}>
-      <div className={`inline-flex items-center gap-1.5 bg-white/[0.03] border border-white/[0.06] rounded-xl ${size}`}>
-        <span className="font-medium text-white">{client.name}</span>
-        <span className="text-white/40">· {client.label} размещений</span>
+      <div className="inline-flex items-center gap-1.5 bg-white/[0.03] border border-white/[0.06] rounded-xl text-[13px] px-4 py-2">
+        <span className={weight}>{client.name}</span>
+        <span className="text-white/30">· {client.label} размещений</span>
       </div>
     </FadeInView>
   );
