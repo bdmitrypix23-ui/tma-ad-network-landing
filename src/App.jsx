@@ -194,9 +194,9 @@ function PricingFlipCard() {
           <span className="font-unbounded font-bold text-lg text-white">14 каналов</span>
 
           <div className="flex-1 overflow-y-auto no-scrollbar">
-            <div className="grid grid-cols-3 gap-2">
+            <div className="flex flex-wrap justify-center gap-2">
               {allPackageChannels.map((ch, i) => (
-                <div key={i} className="bg-white/[0.03] border border-white/[0.06] rounded-xl p-2 flex flex-col items-center gap-1.5">
+                <div key={i} className="w-[calc(33.333%-6px)] bg-white/[0.03] border border-white/[0.06] rounded-xl p-2 flex flex-col items-center gap-1.5">
                   {ch.logo ? (
                     <img src={`${BASE}logos/${ch.logo}`} alt="" className="w-full aspect-square rounded-lg object-cover" />
                   ) : (
