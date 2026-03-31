@@ -48,14 +48,14 @@ describe('App', () => {
   it('показывает цену', () => {
     render(<App />);
     expect(screen.getByText('$150')).toBeInTheDocument();
-    expect(screen.getByText('Всё включено')).toBeInTheDocument();
+    expect(screen.getByText(/Пакет/)).toBeInTheDocument();
   });
 
   it('показывает список преимуществ в прайсинге', () => {
     render(<App />);
     expect(screen.getByText('10 каналов разом')).toBeInTheDocument();
     expect(screen.getByText('1/24 или 2/48 формат')).toBeInTheDocument();
-    expect(screen.getByText('До 50 000 просмотров')).toBeInTheDocument();
+    expect(screen.getByText('~50 000 просмотров')).toBeInTheDocument();
   });
 
   it('показывает клиентов в бегущей строке', () => {
