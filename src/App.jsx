@@ -23,6 +23,7 @@ const otherChannels = [
   { name: "JAGO COMICS", subs: "5.8K", reach: "0.4K" },
 ];
 
+
 const trustedClients = [
   { name: "Модели 30+", count: 30, label: "30+", logo: "pussyshit.jpg" },
   { name: "Булошная 18+", count: 20, label: "20+", logo: "gifchan18.jpg" },
@@ -40,7 +41,6 @@ const trustedClients = [
   { name: "VPN Персик", count: 1, label: "1", logo: "weeabo.jpg" },
 ];
 
-// Ряды — mix крупных и мелких для органичного вида
 const clientRow1 = [trustedClients[0], trustedClients[5], trustedClients[8], trustedClients[13], trustedClients[3]];
 const clientRow2 = [trustedClients[1], trustedClients[4], trustedClients[7], trustedClients[10], trustedClients[12]];
 const clientRow3 = [trustedClients[2], trustedClients[6], trustedClients[9], trustedClients[11]];
@@ -352,10 +352,29 @@ export default function App() {
           </FadeInView>
         </section>
 
-        {/* 5. Trusted Clients */}
-        <section className="flex flex-col gap-4 overflow-hidden -mx-4">
+        {/* 5. Social Proof */}
+        <section className="flex flex-col gap-6 overflow-hidden -mx-4">
           <FadeInView className="px-4">
-            <h2 className="font-unbounded font-bold text-2xl text-white text-center">Нам доверяют</h2>
+            <div className="grid grid-cols-3 text-center gap-4">
+              <div className="flex flex-col gap-1">
+                <span className="font-unbounded font-black text-3xl text-white">
+                  <Counter from={0} to={5} />
+                </span>
+                <span className="text-[11px] text-white/40 font-medium">лет на рынке</span>
+              </div>
+              <div className="flex flex-col gap-1">
+                <span className="font-unbounded font-black text-3xl text-white">
+                  <Counter from={0} to={1000} suffix="+" />
+                </span>
+                <span className="text-[11px] text-white/40 font-medium">размещений</span>
+              </div>
+              <div className="flex flex-col gap-1">
+                <span className="font-unbounded font-black text-3xl text-white">
+                  <Counter from={0} to={70} suffix="%" />
+                </span>
+                <span className="text-[11px] text-white/40 font-medium">возвращаются</span>
+              </div>
+            </div>
           </FadeInView>
 
           <div className="flex gap-3 w-max animate-drift-slow">

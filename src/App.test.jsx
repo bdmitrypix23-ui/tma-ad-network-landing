@@ -38,15 +38,10 @@ describe('App', () => {
     expect(screen.getAllByText('$150').length).toBeGreaterThanOrEqual(1);
   });
 
-  it('отображает секцию "Нам доверяют"', () => {
+  it('отображает статистику и клиентов', () => {
     render(<App />);
-    expect(screen.getByText('Нам доверяют')).toBeInTheDocument();
-  });
-
-  it('рендерит чипы клиентов', () => {
-    render(<App />);
+    expect(screen.getByText('размещений')).toBeInTheDocument();
     expect(screen.getAllByText('Модели 30+').length).toBeGreaterThanOrEqual(1);
-    expect(screen.getAllByText('VPN Персик').length).toBeGreaterThanOrEqual(1);
   });
 
   it('не содержит бегущей строки', () => {
