@@ -200,25 +200,19 @@ export default function App() {
         {/* 5. Pricing: Unified Premium Minimalist */}
         <section className="flex flex-col px-4">
           <FadeInView>
-            <div className="relative bg-[#080808] rounded-3xl p-8 flex flex-col gap-8 overflow-hidden border border-white/[0.06]">
-              {/* Dynamic Inner Glow */}
-              <div
-                className="absolute top-0 right-0 w-32 h-32 blur-[40px] pointer-events-none transition-opacity duration-500"
-                style={{ backgroundColor: activeColor === 'transparent' ? '#ffffff' : activeColor, opacity: 0.25 }}
-              />
-
-              <div className="flex justify-between items-start relative z-10">
+            <div className="bg-[#080808] rounded-3xl p-8 flex flex-col gap-8 border border-white/[0.06]">
+              <div className="flex justify-between items-start">
                 <span className="font-unbounded font-medium text-[10px] text-white/50 uppercase tracking-[0.2em] border border-white/[0.08] px-3 py-1.5 rounded-full bg-white/[0.02]">
                   Пакет "всё сразу"
                 </span>
               </div>
               
-              <div className="flex items-baseline gap-2 relative z-10 -mt-2">
+              <div className="flex items-baseline gap-2 -mt-2">
                 <span className="font-unbounded font-black text-[5rem] leading-none text-white tracking-tighter">$150</span>
                 <span className="text-white/30 text-sm font-medium uppercase tracking-[0.15em] block transform -translate-y-2">/ пост</span>
               </div>
               
-              <ul className="flex flex-col gap-5 w-full text-white/60 relative z-10 pt-4">
+              <ul className="flex flex-col gap-5 w-full text-white/60 pt-4">
                 <li className="flex items-start gap-4">
                   <span className="font-unbounded font-bold text-white/20 mt-0.5 text-sm">01</span>
                   <div className="flex flex-col gap-1 pb-5 border-b border-white/[0.04] w-full">
