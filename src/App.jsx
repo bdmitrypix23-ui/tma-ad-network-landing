@@ -121,7 +121,7 @@ function PricingFlipCard() {
         {/* Front */}
         <div
           className="bg-[#080808] rounded-3xl p-8 flex flex-col gap-6 border border-white/[0.06] relative"
-          style={{ backfaceVisibility: "hidden" }}
+          style={{ backfaceVisibility: "hidden", touchAction: "pan-y" }}
         >
           <span className="font-unbounded font-medium text-[10px] text-white/50 uppercase tracking-[0.2em] border border-white/[0.08] px-3 py-1.5 rounded-full bg-white/[0.02] self-start">
             Максимум охвата
