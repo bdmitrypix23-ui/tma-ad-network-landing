@@ -218,24 +218,24 @@ export default function App() {
                 <span className="text-white/30 text-sm font-medium uppercase tracking-[0.15em] block transform -translate-y-2">/ пост</span>
               </div>
               
-              <ul className="flex flex-col gap-5 w-full text-white/60 relative z-10 pt-4">
-                <li className="flex items-start gap-4">
+              <ul className="flex flex-col gap-3 w-full text-white/60 relative z-10 pt-4">
+                <li className="flex items-start gap-4 bg-white/[0.03] rounded-2xl p-4 border border-white/[0.02]">
                   <span className="font-unbounded font-bold text-white/20 mt-0.5 text-sm">01</span>
-                  <div className="flex flex-col gap-1 pb-5 border-b border-white/[0.04] w-full">
+                  <div className="flex flex-col gap-1">
                     <span className="text-white font-medium text-[15px]">14 каналов разом</span>
                     <span className="text-[13px] text-white/40 leading-snug">Без долгих переговоров и подбора сеток</span>
                   </div>
                 </li>
-                <li className="flex items-start gap-4">
+                <li className="flex items-start gap-4 bg-white/[0.03] rounded-2xl p-4 border border-white/[0.02]">
                   <span className="font-unbounded font-bold text-white/20 mt-0.5 text-sm">02</span>
-                  <div className="flex flex-col gap-1 pb-5 border-b border-white/[0.04] w-full">
+                  <div className="flex flex-col gap-1">
                     <span className="text-white font-medium text-[15px]">1/24 или 2/48 формат</span>
                     <span className="text-[13px] text-white/40 leading-snug">Максимальное время в топе без перебивки</span>
                   </div>
                 </li>
-                <li className="flex items-start gap-4">
+                <li className="flex items-start gap-4 bg-white/[0.03] rounded-2xl p-4 border border-white/[0.02]">
                   <span className="font-unbounded font-bold text-white/20 mt-0.5 text-sm">03</span>
-                  <div className="flex flex-col gap-1 w-full">
+                  <div className="flex flex-col gap-1">
                     <span className="text-white font-medium text-[15px]">~60 000 просмотров</span>
                     <span className="text-[13px] text-white/40 leading-snug">Чистый гарантированный охват аудитории</span>
                   </div>
