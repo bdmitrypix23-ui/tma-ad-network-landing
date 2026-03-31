@@ -33,11 +33,9 @@ describe('App', () => {
     expect(buttons.length).toBeGreaterThanOrEqual(1);
   });
 
-  it('рендерит карточки каналов', () => {
-    const { container } = render(<App />);
-    // карточки каналов — элементы с классом snap-center внутри горизонтального скролла
-    const cards = container.querySelectorAll('.snap-center');
-    expect(cards.length).toBeGreaterThanOrEqual(5);
+  it('рендерит прайсинг-карточку', () => {
+    render(<App />);
+    expect(screen.getAllByText('$150').length).toBeGreaterThanOrEqual(1);
   });
 
   it('отображает секцию "Нам доверяют"', () => {

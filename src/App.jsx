@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { motion, useInView, animate } from 'framer-motion';
 
 const BASE = import.meta.env.BASE_URL;
@@ -276,22 +276,8 @@ function FirstTimeBuyerAccordion() {
 }
 
 export default function App() {
-  const [activeColor, setActiveColor] = useState("transparent");
-
   return (
     <div className="relative min-h-screen bg-grain overflow-x-hidden flex flex-col font-sans">
-      
-      {/* Dynamic Radial Background */}
-      <motion.div 
-        className="fixed inset-0 z-0 pointer-events-none transition-colors duration-1000 ease-out opacity-20"
-        style={{
-          background: `radial-gradient(circle at 50% 50%, ${activeColor} 0%, transparent 80%)`
-        }}
-        initial={false}
-        animate={{
-          background: `radial-gradient(circle at 50% 50%, ${activeColor} 0%, transparent 80%)`
-        }}
-      />
 
       {/* Main Content */}
       <main className="relative z-10 flex-col flex gap-24 pb-24 pt-12 px-4">
@@ -346,46 +332,6 @@ export default function App() {
               </div>
             </div>
           </FadeInView>
-        </section>
-
-        {/* 3. Channels */}
-        <section className="flex flex-col gap-6 -mx-4 relative">
-          <FadeInView className="px-4">
-             <h2 className="font-unbounded font-bold text-2xl text-white text-center">Площадки</h2>
-          </FadeInView>
-          
-          <div className="flex overflow-x-auto snap-x snap-mandatory no-scrollbar px-4 pb-4 gap-3">
-            {channels.map((ch, i) => (
-              <ChannelCard
-                key={i}
-                channel={ch}
-                onInView={(isInView) => {
-                  if (isInView) setActiveColor(ch.color);
-                }}
-              />
-            ))}
-            {/* "Другие" summary card */}
-            <div className="shrink-0 w-[280px] snap-center bg-[#080808] rounded-3xl p-6 border border-white/[0.06] flex flex-col gap-6 relative overflow-hidden">
-              <div className="flex items-center gap-4">
-                <div className="w-14 h-14 rounded-2xl flex items-center justify-center text-2xl shrink-0 bg-white/[0.05] text-white/40">
-                  +5
-                </div>
-                <div className="flex flex-col">
-                  <h3 className="font-unbounded font-bold text-lg text-white leading-tight mb-0.5">Другие</h3>
-                  <span className="text-xs font-medium text-white/40">ещё 5 каналов в сетке</span>
-                </div>
-              </div>
-              <div className="flex flex-col gap-2">
-                {otherChannels.map((ch, i) => (
-                  <div key={i} className="flex justify-between items-center py-1.5 border-b border-white/[0.04] last:border-0">
-                    <span className="text-sm text-white/60">{ch.name}</span>
-                    <span className="font-unbounded text-xs text-white/30">{ch.subs}</span>
-                  </div>
-                ))}
-              </div>
-            </div>
-            <div className="min-w-[16px] snap-center shrink-0"></div>
-          </div>
         </section>
 
         {/* 4. New Pricing */}
@@ -487,57 +433,3 @@ export default function App() {
   );
 }
 
-// Channel Card Component
-function ChannelCard({ channel, onInView }) {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { margin: "-20% -50% -20% -50%", amount: 0.6 });
-
-  useEffect(() => {
-    onInView(isInView);
-  }, [isInView]);
-
-  return (
-    <div 
-      ref={ref}
-      className="shrink-0 w-[280px] snap-center bg-[#080808] rounded-3xl p-6 border border-white/[0.06] flex flex-col gap-6 relative overflow-hidden transition-all duration-500"
-    >
-      {/* Dynamic Inner Glow */}
-      <div 
-        className="absolute top-0 right-0 w-32 h-32 blur-[40px] pointer-events-none transition-opacity duration-500"
-        style={{ backgroundColor: channel.color, opacity: isInView ? 0.25 : 0 }}
-      ></div>
-      
-      <div className="flex items-center gap-4 relative z-10">
-        {channel.logo ? (
-          <img
-            src={`${BASE}logos/${channel.logo}`}
-            alt={channel.name}
-            className="w-14 h-14 rounded-2xl object-cover shrink-0"
-          />
-        ) : (
-          <div
-            className="w-14 h-14 rounded-2xl flex items-center justify-center text-2xl shrink-0"
-            style={{ backgroundColor: `${channel.color}15`, color: channel.color }}
-          >
-            {channel.emoji}
-          </div>
-        )}
-        <div className="flex flex-col">
-          <h3 className="font-unbounded font-bold text-lg text-white leading-tight mb-0.5">{channel.name}</h3>
-          <span className="text-xs font-medium text-white/40">{channel.desc}</span>
-        </div>
-      </div>
-
-      <div className="flex gap-2 relative z-10">
-        <div className="flex-1 bg-white/[0.03] rounded-2xl p-3 flex flex-col gap-1.5 border border-white/[0.02]">
-          <span className="text-[9px] text-white/30 uppercase font-bold tracking-widest">Подписчики</span>
-          <span className="font-unbounded font-medium text-sm text-white">{channel.subs}</span>
-        </div>
-        <div className="flex-1 bg-white/[0.03] rounded-2xl p-3 flex flex-col gap-1.5 border border-white/[0.02]">
-          <span className="text-[9px] text-white/30 uppercase font-bold tracking-widest">Охват</span>
-          <span className="font-unbounded font-medium text-sm text-white">{channel.reach}</span>
-        </div>
-      </div>
-    </div>
-  );
-}
