@@ -4,7 +4,6 @@ import tailwindcss from '@tailwindcss/vite'
 
 // https://vite.dev/config/
 export default defineConfig({
-  base: '/tma-ad-network-landing/',
   plugins: [react(), tailwindcss()],
   test: {
     environment: 'jsdom',
