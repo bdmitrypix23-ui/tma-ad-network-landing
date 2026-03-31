@@ -23,7 +23,28 @@ const otherChannels = [
   { name: "JAGO COMICS", subs: "5.8K" },
 ];
 
-const trustedClients = ["Топор", "Пекарня Рифмы", "Панси", "Денис Борисов", "Wylsacom"];
+const trustedClients = [
+  { name: "Модели 30+", count: 30, label: "30+" },
+  { name: "Булошная 18+", count: 20, label: "20+" },
+  { name: "MODIYA", count: 20, label: "20+" },
+  { name: "Топор 18+", count: 12, label: "12" },
+  { name: "Steam Community", count: 11, label: "11" },
+  { name: "4ch", count: 6, label: "6" },
+  { name: "Раздеватор бот", count: 4, label: "4" },
+  { name: "ВРОТ АИ", count: 3, label: "3" },
+  { name: "Пездуза", count: 3, label: "3" },
+  { name: "DOTA 2", count: 3, label: "3" },
+  { name: "Рифмы и Игры", count: 2, label: "2" },
+  { name: "Рифмы и Панчи", count: 2, label: "2" },
+  { name: "VPN Анон", count: 2, label: "2" },
+  { name: "VPN Персик", count: 1, label: "1" },
+];
+
+function getChipSize(count) {
+  if (count >= 20) return "text-[15px] px-5 py-2.5";
+  if (count >= 5) return "text-[13px] px-4 py-2";
+  return "text-[11px] px-3 py-1.5";
+}
 
 function openTelegram() {
   if (window.Telegram?.WebApp?.HapticFeedback) {
@@ -70,6 +91,18 @@ function Counter({ from = 0, to, suffix = "", duration = 2 }) {
   }, [from, to, isInView, suffix, duration]);
 
   return <span ref={nodeRef}>{from}{suffix}</span>;
+}
+
+function ClientChip({ client, index }) {
+  const size = getChipSize(client.count);
+  return (
+    <FadeInView delay={0.03 * index}>
+      <div className={`inline-flex items-center gap-1.5 bg-white/[0.03] border border-white/[0.06] rounded-xl ${size}`}>
+        <span className="font-medium text-white">{client.name}</span>
+        <span className="text-white/40">· {client.label} размещений</span>
+      </div>
+    </FadeInView>
+  );
 }
 
 export default function App() {
@@ -185,14 +218,14 @@ export default function App() {
           </div>
         </section>
 
-        {/* 4. Marquee Clients */}
-        <section className="flex flex-col gap-8 overflow-hidden -mx-4 py-8 bg-white/[0.02] border-y border-white/[0.05]">
-          <div className="flex gap-12 w-fit animate-marquee">
-            {/* Repeat list 4 times for seamless loop */}
-            {[...trustedClients, ...trustedClients, ...trustedClients, ...trustedClients].map((client, i) => (
-              <span key={i} className="font-unbounded font-medium text-xl w-max text-white/20 uppercase whitespace-nowrap">
-                {client}
-              </span>
+        {/* 4. Trusted Clients */}
+        <section className="flex flex-col gap-6">
+          <FadeInView>
+            <h2 className="font-unbounded font-bold text-2xl text-white text-center">Нам доверяют</h2>
+          </FadeInView>
+          <div className="flex flex-wrap justify-center gap-2">
+            {trustedClients.map((client, i) => (
+              <ClientChip key={client.name} client={client} index={i} />
             ))}
           </div>
         </section>

@@ -39,4 +39,22 @@ describe('App', () => {
     const cards = container.querySelectorAll('.snap-center');
     expect(cards.length).toBeGreaterThanOrEqual(5);
   });
+
+  it('отображает секцию "Нам доверяют"', () => {
+    render(<App />);
+    expect(screen.getByText('Нам доверяют')).toBeInTheDocument();
+  });
+
+  it('рендерит все чипы клиентов', () => {
+    render(<App />);
+    expect(screen.getByText('Модели 30+')).toBeInTheDocument();
+    expect(screen.getByText('VPN Персик')).toBeInTheDocument();
+    const chips = screen.getAllByText(/размещений/);
+    expect(chips).toHaveLength(14);
+  });
+
+  it('не содержит бегущей строки', () => {
+    const { container } = render(<App />);
+    expect(container.querySelector('.animate-marquee')).toBeNull();
+  });
 });

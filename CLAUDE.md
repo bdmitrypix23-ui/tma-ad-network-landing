@@ -47,9 +47,10 @@ Pre-commit хук (`.hooks/pre-commit`) запускает `npm test && npm run 
 - `FadeInView` — обёртка с появлением при скролле (IntersectionObserver через framer-motion)
 - `Counter` — анимированный счётчик (framer-motion `animate`)
 - `ChannelCard` — карточка канала в горизонтальном скролле, при попадании в viewport меняет `activeColor` (фоновое свечение)
-- `App` — главный компонент, секции: Hero → Как работает → Каналы → Бегущая строка клиентов → Прайсинг → CTA
+- `ClientChip` — чип клиента с именем и количеством размещений, размер зависит от количества
+- `App` — главный компонент, секции: Hero → Как работает → Каналы → Нам доверяют (чипы клиентов) → Прайсинг → CTA
 
-Стили: Tailwind-утилиты inline + кастомные классы в `src/index.css` (`.bg-grain` — шумовой оверлей, `.no-scrollbar`, `.font-unbounded`, анимация `marquee`). Файл `src/App.css` — остатки от шаблона Vite, не используется в текущем дизайне.
+Стили: Tailwind-утилиты inline + кастомные классы в `src/index.css` (`.bg-grain` — шумовой оверлей, `.no-scrollbar`, `.font-unbounded`). Файл `src/App.css` — остатки от шаблона Vite, не используется в текущем дизайне.
 
 ## Шрифты
 
