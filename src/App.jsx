@@ -40,10 +40,10 @@ const trustedClients = [
   { name: "VPN Персик", count: 1, label: "1" },
 ];
 
-function getChipWeight(count) {
-  if (count >= 20) return "font-semibold text-white";
-  if (count >= 5) return "font-medium text-white";
-  return "font-medium text-white/70";
+function getChipStyle(count) {
+  if (count >= 20) return "text-[15px] px-5 py-2.5 font-semibold text-white";
+  if (count >= 5) return "text-[13px] px-4 py-2 font-medium text-white";
+  return "text-[11px] px-3 py-1.5 font-medium text-white/70";
 }
 
 function openTelegram() {
@@ -93,15 +93,13 @@ function Counter({ from = 0, to, suffix = "", duration = 2 }) {
   return <span ref={nodeRef}>{from}{suffix}</span>;
 }
 
-function ClientChip({ client, index }) {
-  const weight = getChipWeight(client.count);
+function ClientChip({ client }) {
+  const style = getChipStyle(client.count);
   return (
-    <FadeInView delay={0.03 * index}>
-      <div className="inline-flex items-center gap-1.5 bg-white/[0.03] border border-white/[0.06] rounded-xl text-[13px] px-4 py-2">
-        <span className={weight}>{client.name}</span>
-        <span className="text-white/30">· {client.label} размещений</span>
-      </div>
-    </FadeInView>
+    <div className={`flex-auto flex items-center justify-center gap-1.5 bg-white/[0.03] border border-white/[0.06] rounded-xl ${style}`}>
+      <span>{client.name}</span>
+      <span className="text-white/30">· {client.label} размещений</span>
+    </div>
   );
 }
 
@@ -223,11 +221,13 @@ export default function App() {
           <FadeInView>
             <h2 className="font-unbounded font-bold text-2xl text-white text-center">Нам доверяют</h2>
           </FadeInView>
-          <div className="flex flex-wrap justify-center gap-2">
-            {trustedClients.map((client, i) => (
-              <ClientChip key={client.name} client={client} index={i} />
-            ))}
-          </div>
+          <FadeInView>
+            <div className="flex flex-wrap gap-2">
+              {trustedClients.map((client) => (
+                <ClientChip key={client.name} client={client} />
+              ))}
+            </div>
+          </FadeInView>
         </section>
 
         {/* 5. Pricing: Unified Premium Minimalist */}
