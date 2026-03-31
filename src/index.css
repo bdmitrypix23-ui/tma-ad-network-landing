@@ -3,6 +3,19 @@
 
 @theme {
   --color-brand-bg: #050505;
+  --animate-drift-slow: drift-left 45s linear infinite;
+  --animate-drift-medium: drift-right 35s linear infinite;
+  --animate-drift-fast: drift-left 30s linear infinite;
+}
+
+@keyframes drift-left {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+@keyframes drift-right {
+  0% { transform: translateX(-50%); }
+  100% { transform: translateX(0); }
 }
 
 html, body {

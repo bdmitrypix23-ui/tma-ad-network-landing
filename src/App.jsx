@@ -24,27 +24,26 @@ const otherChannels = [
 ];
 
 const trustedClients = [
-  { name: "Модели 30+", count: 30, label: "30+" },
-  { name: "Булошная 18+", count: 20, label: "20+" },
-  { name: "MODIYA", count: 20, label: "20+" },
-  { name: "Топор 18+", count: 12, label: "12" },
-  { name: "Steam Community", count: 11, label: "11" },
-  { name: "4ch", count: 6, label: "6" },
-  { name: "Раздеватор бот", count: 4, label: "4" },
-  { name: "ВРОТ АИ", count: 3, label: "3" },
-  { name: "Пездуза", count: 3, label: "3" },
-  { name: "DOTA 2", count: 3, label: "3" },
-  { name: "Рифмы и Игры", count: 2, label: "2" },
-  { name: "Рифмы и Панчи", count: 2, label: "2" },
-  { name: "VPN Анон", count: 2, label: "2" },
-  { name: "VPN Персик", count: 1, label: "1" },
+  { name: "Модели 30+", count: 30, label: "30+", logo: "pussyshit.jpg" },
+  { name: "Булошная 18+", count: 20, label: "20+", logo: "gifchan18.jpg" },
+  { name: "MODIYA", count: 20, label: "20+", logo: "shittykitty.jpg" },
+  { name: "Топор 18+", count: 12, label: "12", logo: "bybaclub.jpg" },
+  { name: "Steam Community", count: 11, label: "11", logo: "weeabo.jpg" },
+  { name: "4ch", count: 6, label: "6", logo: "gifchan.jpg" },
+  { name: "Раздеватор бот", count: 4, label: "4", logo: "anivibe.jpg" },
+  { name: "ВРОТ АИ", count: 3, label: "3", logo: "comicschan.jpg" },
+  { name: "Пездуза", count: 3, label: "3", logo: "parnyiaviy.jpg" },
+  { name: "DOTA 2", count: 3, label: "3", logo: "pussyshit.jpg" },
+  { name: "Рифмы и Игры", count: 2, label: "2", logo: "gifchan18.jpg" },
+  { name: "Рифмы и Панчи", count: 2, label: "2", logo: "shittykitty.jpg" },
+  { name: "VPN Анон", count: 2, label: "2", logo: "bybaclub.jpg" },
+  { name: "VPN Персик", count: 1, label: "1", logo: "weeabo.jpg" },
 ];
 
-function getChipStyle(count) {
-  if (count >= 20) return "text-[15px] px-5 py-2.5 font-semibold text-white";
-  if (count >= 5) return "text-[13px] px-4 py-2 font-medium text-white";
-  return "text-[11px] px-3 py-1.5 font-medium text-white/70";
-}
+// Ряды — mix крупных и мелких для органичного вида
+const clientRow1 = [trustedClients[0], trustedClients[5], trustedClients[8], trustedClients[13], trustedClients[3]];
+const clientRow2 = [trustedClients[1], trustedClients[4], trustedClients[7], trustedClients[10], trustedClients[12]];
+const clientRow3 = [trustedClients[2], trustedClients[6], trustedClients[9], trustedClients[11]];
 
 function openTelegram() {
   if (window.Telegram?.WebApp?.HapticFeedback) {
@@ -94,11 +93,11 @@ function Counter({ from = 0, to, suffix = "", duration = 2 }) {
 }
 
 function ClientChip({ client }) {
-  const style = getChipStyle(client.count);
   return (
-    <div className={`flex-auto flex items-center justify-center gap-1.5 bg-white/[0.03] border border-white/[0.06] rounded-xl ${style}`}>
-      <span>{client.name}</span>
-      <span className="text-white/30">· {client.label} размещений</span>
+    <div className="flex items-center gap-2 bg-white/[0.03] border border-white/[0.06] rounded-xl px-3 py-2 shrink-0">
+      <img src={`${BASE}logos/${client.logo}`} alt="" className="w-6 h-6 rounded-lg object-cover" />
+      <span className="font-medium text-white text-[13px] whitespace-nowrap">{client.name}</span>
+      <span className="text-white/30 text-[11px] whitespace-nowrap">· {client.label} разм.</span>
     </div>
   );
 }
@@ -217,17 +216,28 @@ export default function App() {
         </section>
 
         {/* 4. Trusted Clients */}
-        <section className="flex flex-col gap-6">
-          <FadeInView>
+        <section className="flex flex-col gap-4 overflow-hidden -mx-4">
+          <FadeInView className="px-4">
             <h2 className="font-unbounded font-bold text-2xl text-white text-center">Нам доверяют</h2>
           </FadeInView>
-          <FadeInView>
-            <div className="flex flex-wrap gap-2">
-              {trustedClients.map((client) => (
-                <ClientChip key={client.name} client={client} />
-              ))}
-            </div>
-          </FadeInView>
+
+          <div className="flex gap-3 w-max animate-drift-slow">
+            {[...clientRow1, ...clientRow1].map((client, i) => (
+              <ClientChip key={i} client={client} />
+            ))}
+          </div>
+
+          <div className="flex gap-3 w-max animate-drift-medium">
+            {[...clientRow2, ...clientRow2].map((client, i) => (
+              <ClientChip key={i} client={client} />
+            ))}
+          </div>
+
+          <div className="flex gap-3 w-max animate-drift-fast">
+            {[...clientRow3, ...clientRow3].map((client, i) => (
+              <ClientChip key={i} client={client} />
+            ))}
+          </div>
         </section>
 
         {/* 5. Pricing: Unified Premium Minimalist */}
