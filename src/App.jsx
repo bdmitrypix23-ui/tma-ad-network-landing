@@ -183,16 +183,14 @@ function PricingFlipCard() {
           </button>
         </div>
 
-        {/* Back */}
+        {/* Back — channels list */}
         <div
-          className="bg-[#080808] rounded-3xl p-6 flex flex-col gap-4 border border-white/[0.06] absolute inset-0"
+          className="bg-[#080808] rounded-3xl p-8 flex flex-col gap-6 border border-white/[0.06] absolute inset-0"
           style={{ backfaceVisibility: "hidden", transform: "rotateY(180deg)" }}
         >
-          <div className="flex justify-between items-center">
-            <span className="font-unbounded font-bold text-base text-white">Каналы пакета</span>
-          </div>
+          <span className="font-unbounded font-bold text-base text-white">14 каналов</span>
 
-          <div className="flex-1 overflow-y-auto no-scrollbar flex flex-col gap-1.5" style={{ maxHeight: 340 }}>
+          <div className="flex-1 overflow-y-auto no-scrollbar flex flex-col gap-1">
             {allPackageChannels.map((ch, i) => (
               <div key={i} className="flex justify-between items-center py-2 border-b border-white/[0.04] last:border-0">
                 <div className="flex items-center gap-2.5">
@@ -208,11 +206,19 @@ function PricingFlipCard() {
             ))}
           </div>
 
+          <div className="flex items-center gap-2 text-[13px] text-white/40">
+            <span className="font-unbounded font-bold text-white/60">$150</span>
+            <span>·</span>
+            <span>1/24</span>
+            <span>·</span>
+            <span>~60K охват</span>
+          </div>
+
           <button
             onClick={() => setFlipped(false)}
-            className="w-full bg-white/[0.06] text-white/60 font-medium text-sm h-10 rounded-xl active:scale-95 transition-transform mt-auto"
+            className="w-full bg-white text-black font-unbounded font-bold text-base h-12 rounded-2xl active:scale-95 transition-transform"
           >
-            ← Назад
+            Назад
           </button>
         </div>
       </motion.div>
@@ -387,7 +393,7 @@ export default function App() {
 
           <div className="flex overflow-x-auto snap-x snap-mandatory no-scrollbar px-4 gap-3 items-start">
             {/* Left joke card */}
-            <div className="shrink-0 w-[280px] snap-center bg-[#080808] rounded-3xl p-8 border border-white/[0.06] flex flex-col gap-6 opacity-40 min-h-[420px] justify-center items-center text-center">
+            <div className="shrink-0 w-[280px] snap-center bg-[#080808] rounded-3xl p-8 border border-white/[0.06] flex flex-col gap-6 opacity-40 min-h-[420px] justify-center items-center text-center" style={{ touchAction: "pan-y" }}>
               <span className="text-4xl">🐹</span>
               <span className="font-unbounded font-bold text-lg text-white/40">Хомяк-пак</span>
               <span className="text-sm text-white/20">Скоро. Может быть. Нет.</span>
@@ -397,7 +403,7 @@ export default function App() {
             <PricingFlipCard />
 
             {/* Right joke card */}
-            <div className="shrink-0 w-[280px] snap-center bg-[#080808] rounded-3xl p-8 border border-white/[0.06] flex flex-col gap-6 opacity-40 min-h-[420px] justify-center items-center text-center">
+            <div className="shrink-0 w-[280px] snap-center bg-[#080808] rounded-3xl p-8 border border-white/[0.06] flex flex-col gap-6 opacity-40 min-h-[420px] justify-center items-center text-center" style={{ touchAction: "pan-y" }}>
               <span className="text-4xl">🦄</span>
               <span className="font-unbounded font-bold text-lg text-white/40">Единорог-пак</span>
               <span className="text-sm text-white/20">Когда-нибудь потом</span>
