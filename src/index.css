@@ -3,9 +3,9 @@
 
 @theme {
   --color-brand-bg: #050505;
-  --animate-drift-slow: drift-left 45s linear infinite;
-  --animate-drift-medium: drift-right 35s linear infinite;
-  --animate-drift-fast: drift-left 30s linear infinite;
+  --animate-drift-slow: drift-left 90s linear infinite;
+  --animate-drift-medium: drift-right 75s linear infinite;
+  --animate-drift-fast: drift-left 60s linear infinite;
 }
 
 @keyframes drift-left {
