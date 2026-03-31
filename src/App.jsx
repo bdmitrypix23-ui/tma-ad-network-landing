@@ -338,22 +338,18 @@ export default function App() {
           </FadeInView>
         </section>
 
-        {/* 4. New Pricing */}
-        <section className="flex flex-col gap-8">
-          <FadeInView>
+        {/* 4. Pricing + Social Proof — единый финальный блок */}
+        <section className="flex flex-col gap-6 overflow-hidden -mx-4">
+          <FadeInView className="px-4">
             <h2 className="font-unbounded font-bold text-2xl text-white text-center">Прайс</h2>
           </FadeInView>
-          <FadeInView>
+          <FadeInView className="px-4">
             <PricingFlipCard />
           </FadeInView>
 
-          <FadeInView delay={0.1}>
+          <FadeInView delay={0.1} className="px-4">
             <FirstTimeBuyerAccordion />
           </FadeInView>
-        </section>
-
-        {/* 5. Social Proof */}
-        <section className="flex flex-col gap-6 overflow-hidden -mx-4">
           <FadeInView className="px-4">
             <div className="grid grid-cols-3 text-center gap-4">
               <div className="flex flex-col gap-1">
