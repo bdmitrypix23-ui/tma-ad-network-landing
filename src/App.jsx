@@ -169,7 +169,7 @@ function PricingFlipCard() {
                   key={i}
                   src={`${BASE}logos/${ch.logo}`}
                   alt=""
-                  className="w-8 h-8 rounded-full border-2 border-[#080808] object-cover"
+                  className="w-8 h-8 rounded-lg border-2 border-[#080808] object-cover"
                 />
               ))}
             </div>
